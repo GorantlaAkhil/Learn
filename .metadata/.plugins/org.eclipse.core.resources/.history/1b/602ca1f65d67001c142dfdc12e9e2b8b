@@ -1,0 +1,22 @@
+package com.example.bean;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Data
+@Getter
+@Setter
+@AllArgsConstructor
+public class InformationSchema {
+	
+	private String table_schema;
+	private String constraint_name;
+	private String table_name;
+	private String column_name;
+	private String foreign_table_schema;
+	private String foreign_table_name;
+	private String foreign_table_column;
+
+}

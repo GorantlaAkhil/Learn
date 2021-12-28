@@ -1,0 +1,25 @@
+package com.collection;
+
+import java.util.ArrayList;
+import java.util.TreeSet;
+
+public class Basics {
+	public static void main(String[] a) {
+		//Collections Size can be grown Dynamically not possible in arrays
+		ArrayList<Integer> al = new ArrayList<>(3);
+		al.add(13);
+		al.add(134);
+		al.add(1368);
+		al.add(21314);
+		al.add(12344);
+		System.out.println(al);
+		//Collections allow hetrogenous elements
+		//Collections --> predefined methods for searching and sorting
+		TreeSet<String> ts = new TreeSet<>();
+		ts.add("Akhil");
+		ts.add("Bhanu");
+		ts.add("Chandu");
+		ts.add("Dhanu");
+	}
+
+}

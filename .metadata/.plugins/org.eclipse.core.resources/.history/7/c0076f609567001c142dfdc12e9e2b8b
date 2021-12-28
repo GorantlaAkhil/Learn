@@ -1,0 +1,26 @@
+package com.example.demo.list;
+
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import org.springframework.boot.CommandLineRunner;
+
+public class All_Tables implements CommandLineRunner{
+	@Override
+	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	public void getAllTables() {
+		List<String> table_name=new ArrayList<String>();
+		
+	}
+
+}

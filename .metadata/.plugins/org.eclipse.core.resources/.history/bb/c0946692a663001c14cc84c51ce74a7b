@@ -1,0 +1,19 @@
+package com.collection;
+
+public class CollectionTypes {
+	
+	//Collection(3): List ,Set,Queue
+	//List(3) : ArrayList,Vector and LinkedList
+	//Vector(1) : Stack
+	
+	//Set(2) : HashSet,SortedSet
+	            //HashSet(1): LinkedHashSet
+	//SortedSet-->NavigableSet--> TreeSet
+	
+	//Queue -> priorityQueue,BlockingQueue
+	//BlockingQueue(2)-->PriorityBlockingQueue,LinkedBlockingQueue
+	
+	//------------------------------------
+	
+
+}

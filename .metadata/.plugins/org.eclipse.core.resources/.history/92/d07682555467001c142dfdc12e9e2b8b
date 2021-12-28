@@ -1,0 +1,10 @@
+## default connection pool
+
+
+## PostgreSQL
+spring.datasource.url=jdbc:postgresql://localhost:5432/sample
+spring.datasource.username=postgres
+spring.datasource.password=akhil
+
+#drop n create table again, good for testing, comment this in production
+spring.jpa.hibernate.ddl-auto=update

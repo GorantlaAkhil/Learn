@@ -1,0 +1,13 @@
+package com.example.bean.demo;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Table_Details {
+	
+	private String table_schema;
+	private String table_name;
+	private String column_name;
+	private String constraint_type;
+
+}

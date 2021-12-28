@@ -1,0 +1,8 @@
+package com.collection;
+
+public class CollectionBasics {
+	public static void main(String[] a) {
+		
+	}
+
+}

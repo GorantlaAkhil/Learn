@@ -1,0 +1,39 @@
+package com.example.demo.list;
+
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+@Component
+public class All_Tables implements CommandLineRunner{
+	@Override
+	public void run(String... args) throws Exception {
+		System.out.println("Hii!");
+		getAllTables();
+	}
+	public void getAllTables() throws SQLException {
+		
+		 List<String> table_name=new ArrayList<String>();
+		
+		 String mysqlUrl = "jdbc:postgresql://localhost:5432/postgres?currentSchema=sample";
+	     Connection con = DriverManager.getConnection(mysqlUrl, "postgres", "akhil");
+	     Statement stmt = con.createStatement();
+	     ResultSet rs = stmt.executeQuery("SELECT tablename\n"
+		      		+ "FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND \n"
+		      		+ "    schemaname != 'information_schema'");
+	     while(rs.next()) {
+	         table_name.add(rs.getString(1));
+	         System.out.println();
+	      }
+		
+	}
+
+}

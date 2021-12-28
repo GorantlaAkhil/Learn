@@ -1,0 +1,78 @@
+package com.example.demo.list;
+
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.example.bean.demo.InformationSchema;
+import com.example.bean.demo.Table_Details;
+@Component
+public class All_Tables implements CommandLineRunner{
+	@Override
+	public void run(String... args) throws Exception {
+		List<String> tbl_name =getAllTables();
+	     System.out.println("List of all tables");
+	     for(String i:tbl_name) {
+	    	 System.out.println(i);
+	     }
+	     
+	     ArrayList<Table_Details> tabl_content=tabl_content(tbl_name); 
+	}
+	//modify it to retuen List<String>
+	public List<String> getAllTables() throws SQLException {
+		
+		 List<String> table_name=new ArrayList<String>();
+		
+		 String mysqlUrl = "jdbc:postgresql://localhost:5432/postgres?currentSchema=sample";
+	     Connection con = DriverManager.getConnection(mysqlUrl, "postgres", "akhil");
+	     Statement stmt = con.createStatement();
+	     ResultSet rs = stmt.executeQuery("SELECT tablename\n"
+		      		+ "FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND \n"
+		      		+ "    schemaname != 'information_schema'");
+	     while(rs.next()) {
+	         table_name.add(rs.getString(1));
+	        
+	      }
+
+	     return table_name;
+		
+	}
+	//End of all tables
+   public ArrayList<Table_Details> tabl_content(List<String> tbl_name) throws Exception{
+	   String mysqlUrl = "jdbc:postgresql://localhost:5432/postgres?currentSchema=sample";
+	     Connection con = DriverManager.getConnection(mysqlUrl, "postgres", "akhil");
+	     Statement stmt = con.createStatement();
+	   ArrayList<Table_Details> tbl_dtls =new ArrayList<Table_Details>();
+	   Iterator itr = tbl_name.iterator();
+	   while(itr.hasNext()) {
+		   
+		   String table_Name=(String) itr.next();
+		   stmt=con.prepareStatement("SELECT a.table_schema,a.table_name,a.column_name,b.constraint_type from information_schema.constraint_column_usage as a JOIN information_schema.table_constraints as b ON a.constraint_name=b.constraint_name AND a.table_name=b.table_name Where a.table_name=:tableName");
+		   stmt.setString(tableName,table_Name);
+		   ResultSet rs1 = stmt.executeQuery();
+		   ResultSet rs1 = stmt.executeQuery("");
+		   ResultSetMetaData rsmd = rs1.getMetaData();
+           while (rs1.next()) {
+               for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+            	   Table_Details t = new Table_Details();
+            	   t.setTable_schema(rs1.getString(i++));
+            	   t.setTable_name(rs1.getString(i++));
+            	   t.setColumn_name(rs1.getString(i++));
+            	   t.setConstraint_type(rs1.getString(i++));
+            	   tbl_dtls.add(t);
+               }
+           }
+             
+	   }
+	   return tbl_dtls;
+   }
+}

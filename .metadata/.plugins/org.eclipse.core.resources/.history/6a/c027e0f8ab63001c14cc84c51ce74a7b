@@ -1,0 +1,9 @@
+package com.collection;
+
+public class ListCollection {
+	
+	public static void main(String[] a) {
+		
+	}
+
+}
